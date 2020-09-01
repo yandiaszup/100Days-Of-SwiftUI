@@ -61,7 +61,7 @@ struct ContentView: View {
                 Section(header: Text("To")) {
                     buildSegmentedPicker(binding: $secondUnit, label: "To")
                     
-                    Text("\(convertedTemperature, specifier: "%.2f") \(units[secondUnit].rawValue)")
+                    Text("\(convertedTemperature, specifier: "%.2f") \(units[secondUnit].rawValue)").customModifier()
                 }
                 
             }.navigationBarTitle("Temp Converter")
@@ -76,6 +76,20 @@ struct ContentView: View {
         }.pickerStyle(SegmentedPickerStyle())
         
         return picker
+    }
+}
+
+struct CustomModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content.foregroundColor(Color.red)
+        .padding()
+            .background(Color.red)
+    }
+}
+
+extension View {
+    func customModifier() -> some View {
+        self.modifier(CustomModifier())
     }
 }
 
