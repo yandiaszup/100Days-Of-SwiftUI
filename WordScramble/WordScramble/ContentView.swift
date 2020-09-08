@@ -29,6 +29,7 @@ struct ContentView: View {
                     Image(systemName: "\($0.count).circle")
                     Text($0)
                 }
+                Text("Score: \(usedWords.count)").font(.largeTitle).padding()
             }
             .navigationBarTitle(rootWord)
             .onAppear(perform: startGame)
@@ -69,7 +70,7 @@ struct ContentView: View {
     }
     
     private func isOriginal(word: String) -> Bool {
-        !usedWords.contains(word)
+        !usedWords.contains(word) && word != rootWord
     }
     
     func isPossible(word: String) -> Bool {
